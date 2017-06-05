@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
-from app.models import Cliente
+from app.models import Cliente, Pedido
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from app.forms import ClienteForm
@@ -7,7 +7,7 @@ from django.utils import timezone
 
 def inicio(request):
     pedidos = Pedido.objects.order_by('fecha')
-    return render_to_response('inicio.html', {'pedidos': pedidos},
+    return render_to_response('base.html', {'pedidos': pedidos},
                               context_instance=RequestContext(request))
 
 def Cliente(request):
