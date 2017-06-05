@@ -24,10 +24,12 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', 'app.views.inicio', name='inicio'),
     url(r'^app/$', 'app.views.inicio'),
-    url(r'^clienteList/$', 'app.views.Cliente'),
+    url(r'^clienteList/$', 'app.views.ClienteInfo'),
     url(r'^clienteAdd/$', 'app.views.Cliente_add'),
     url(r'^clienteEdit/(?P<id>\d+)$', 'app.views.Cliente_edit'),
     url(r'^clienteBorrar/(?P<id>\d+)$', 'app.views.Cliente_borrar'),
+    url(r'^pedidoList/$', 'app.views.PedidoInfo'),
+    url(r'^pedidoAdd/$', 'app.views.Pedido_add'),
 
 
 

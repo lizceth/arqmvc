@@ -14,12 +14,26 @@ class ClienteForm(forms.ModelForm):
         super(ClienteForm,
               self).__init__(*args, **kwargs)    
         self.fields['nombres'] = forms.CharField(
-            label=capfirst(_(u'Name')), required=True,
+            label=capfirst(_(u'Nombres')), required=True,
             help_text=u'<small class="help-error"></small> %s' % _(
                 u' '),
         )
 
-# class PedidoForm(forms.ModelForm):
-#      class Meta:
-#          model = Pedido
-         #fields = ("descripcion", "fecha", "cliente")
+class PedidoForm(forms.ModelForm):
+     class Meta:
+         model = Pedido
+         fields = ('descripcion', 'cliente')
+     def __init__(self, *args, **kwargs):
+        super(PedidoForm,
+               self).__init__(*args, **kwargs)    
+        self.fields['fecha'] = forms.CharField(
+            label=capfirst(_(u'Fecha')), required=True,
+            help_text=u'<small class="help-error"></small> %s' % _(
+                u' '),
+        )
+         # self.fields['solution'] = forms.ModelChoiceField(
+         #    label=capfirst(_(u'Solution')), required=True,
+         #    queryset=Solution.objects.filter(is_active=True),
+         #    help_text=u'<small class="help-error"></small> %s' % _(
+         #        u' '),
+         # )

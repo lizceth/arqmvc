@@ -1,8 +1,8 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
-from app.models import Cliente, Pedido
+from .models import Cliente, Pedido
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
-from app.forms import ClienteForm
+from app.forms import ClienteForm, PedidoForm
 from django.utils import timezone
 
 def inicio(request):
@@ -10,7 +10,7 @@ def inicio(request):
     return render_to_response('base.html', {'pedidos': pedidos},
                               context_instance=RequestContext(request))
 
-def Cliente(request):
+def ClienteInfo(request):
     clientes = Cliente.objects.all()
     titulo = "pagina  de  clientes "
     return render_to_response('app/cliente.html', {
@@ -46,3 +46,23 @@ def Cliente_borrar (request, id):
     cliente_borrar = get_object_or_404(Cliente, pk=id)
     cliente_borrar.delete()
     return HttpResponseRedirect("/clienteList/")
+
+
+def PedidoInfo(request):
+    pedidos = Pedido.objects.order_by('fecha')
+    titulo = "pagina  de  pedidos "
+    return render_to_response('app/pedido.html', {
+        'pedidos': pedidos, 'titulo': titulo},
+         context_instance=RequestContext(request))
+
+def Pedido_add(request):
+    if request.method == 'POST':
+        formulario = PedidoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/pedidoList/')
+    else:
+        formulario = PedidoForm()
+    return render_to_response('app/pedidoAdd.html',
+                              {'formulario': formulario},
+                          context_instance=RequestContext(request))
