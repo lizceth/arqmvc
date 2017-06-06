@@ -7,6 +7,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    {% if user.is_authenticated %}
+        <p>Bienvenido {{user.first_name}}</p>
+    {% else %} 
+    {% endif %}
     <title>Historial de Solicitudes</title>
 
     <!-- Bootstrap Core CSS -->
@@ -18,7 +22,7 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom Theme CSS -->
-    <link href="{{STATIC_URL}}css/grayscale.css" rel="stylesheet">
+    <link href="static/css/grayscale.css" rel="stylesheet">
 
 </head>
 
@@ -64,8 +68,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">Eventos</h1>
-                        <p class="intro-text">eventos de sistemas</p>
+                        <h1 class="brand-heading">Citas</h1>
+                        <p class="intro-text">Medicos</p>
                         <div class="page-scroll">
                             <a href="#about" class="btn btn-circle">
                                 <i class="fa fa-angle-double-down animated"></i>
@@ -88,12 +92,13 @@
 
             <body>
 
-            {% for evento in eventos %} 
+            {% for pedido in pedidos %} 
             <br>
-            <img src= "{{MEDIA_URL}}{{evento.imagen}}">
-            <h2>{{evento.nombre}}</h2>
-            <h5>{{evento.fecha_inicio}}</h5>
-            <a href='/detalle/{{evento.id}}'class='btn btn-primary'>ver detalles>></a>
+            
+            <h2>{{pedido.descripcion}}</h2>
+            <h5>{{pedido.fecha}}</h5>
+            <h5>{{pedido.cliente}}</h5>
+            
             <br>
     {% empty %}
     <li>No hay Citas Pendientes.</li>   
@@ -105,7 +110,8 @@
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Acerca de:</h2>      
-                    <p>Esta página muestra todos los eventos académicos que se realizan en la Universidad Peruana Union</p>
+                    <p>Esta página muestra todos los pedidos para acceder a una cita
+                    </p>
                 </div>
             </div>
         </div>
@@ -115,9 +121,7 @@
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h1>Ingreso al Sistema</h1>
-                <a href ='/ingresar'class='btn btn-primary'></a>
-                <p>Para ingresar al sistema de eventos debera hacer clic en ingresar...</p>
+               
             </div>
         </div>
     </section>
@@ -133,7 +137,7 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="{{STATIC_URL}}js/grayscale.js"></script>
+    <script src="static/js/grayscale.js"></script>
 
 </body>
 

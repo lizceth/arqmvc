@@ -8,7 +8,7 @@ class Cliente(models.Model):
     nombres = models.CharField(max_length=50)
     telefono = models.CharField(max_length=10)
     def __str__(self):
-        return self.nombres
+        return str(self.nombres)
 
 class Pedido(models.Model):
     """docstring for Pedido"""
@@ -17,7 +17,7 @@ class Pedido(models.Model):
     cliente = models.ForeignKey(Cliente)
 
     def __str__(self):
-        return self.cliente 
+        return str(self.cliente)
 
 class Atencion(models.Model):
 
@@ -28,6 +28,4 @@ class Atencion(models.Model):
     tratamiento = models.TextField()
 
     def __str__(self):
-        return "%s - %s " % (self.fecha, self.pedido.cliente)
-        
-
+        return str(self.pedido.cliente.nombres)
