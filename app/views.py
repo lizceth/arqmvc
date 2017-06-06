@@ -1,9 +1,10 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
-from .models import Cliente, Pedido
+from .models import Cliente, Pedido, ClienteProxy
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from app.forms import ClienteForm, PedidoForm
 from django.utils import timezone
+from rest_framework import serializers, viewsets
 
 def inicio(request):
     pedidos = Pedido.objects.order_by('fecha')
@@ -66,3 +67,12 @@ def Pedido_add(request):
     return render_to_response('app/pedidoAdd.html',
                               {'formulario': formulario},
                           context_instance=RequestContext(request))
+
+class ClienteProxySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClienteProxy
+        fields = '__all__'
+
+class ClienteProxyViewSet(viewsets.ModelViewSet):
+    queryset = ClienteProxy.objects.all()
+    serializer_class = ClienteProxySerializer
