@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from .PersonManager import ClienteManager
 from django.contrib.auth.models import User
 
 
@@ -29,5 +30,8 @@ class Atencion(models.Model):
 
     def __str__(self):
         return "%s - %s " % (self.fecha, self.pedido.cliente)
-        
-
+    
+class ClienteProxy(Cliente):
+    objects = ClienteManager()
+    class Meta:
+        proxy = True
