@@ -29,13 +29,10 @@ class Atencion(models.Model):
     tratamiento = models.TextField()
 
     def __str__(self):
-<<<<<<< HEAD
+
         return str(self.pedido.cliente.nombres)
-=======
-        return "%s - %s " % (self.fecha, self.pedido.cliente)
-    
+
 class ClienteProxy(Cliente):
     objects = ClienteManager()
     class Meta:
         proxy = True
->>>>>>> 0dd68e531acfbbf2d418c50ebb0e9ac6a41899bf
