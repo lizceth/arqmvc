@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from django.utils.translation import ugettext
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import capfirst
-from app.models import Cliente, Pedido
+from app.models import Cliente, Pedido, ClienteProxy
 
 class ClienteForm(forms.ModelForm):
      class Meta:
@@ -37,3 +37,8 @@ class PedidoForm(forms.ModelForm):
          #    help_text=u'<small class="help-error"></small> %s' % _(
          #        u' '),
          # )
+
+class ClienteProxyForm(forms.ModelForm):
+     class Meta:
+         model = ClienteProxy
+         fields = ("nombres", "telefono")

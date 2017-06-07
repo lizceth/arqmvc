@@ -8,5 +8,4 @@ class ClienteManager(models.Manager):  # models.Manager
     """ """
 
     def get_queryset(self):
-        return super(ClienteManager, self).get_queryset().filter(
-            nombres='m')
+        return super(ClienteManager, self).get_queryset()

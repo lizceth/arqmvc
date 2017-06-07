@@ -12,7 +12,7 @@ def inicio(request):
                               context_instance=RequestContext(request))
 
 def ClienteInfo(request):
-    clientes = Cliente.objects.all()
+    clientes = ClienteProxy.objects.all()
     titulo = "pagina  de  clientes "
     return render_to_response('app/cliente.html', {
         'clientes': clientes, 'titulo': titulo},
@@ -39,7 +39,7 @@ def Cliente_edit (request, id):
                 formulario.save()
                 return HttpResponseRedirect("/clienteList/")
         else:
-            formulario = ClienteForm(instance=ponente_edit)
+            formulario = ClienteForm(instance=cliente_edit)
         return render_to_response('app/clienteEdit.html',
                                  {'formulario': formulario},
                                   context_instance=RequestContext(request))
